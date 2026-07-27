@@ -15,7 +15,7 @@ export function SiteHeader() {
         <nav>
           <a href="/loai-hinh">Loại hình</a>
           <a href="/#cach-hoat-dong">Cách hoạt động</a>
-          <a href="/#bang-gia">Bảng giá</a>
+          <a href="/bang-gia">Bảng giá</a>
           <a href="/#giay-phep">Giấy phép</a>
         </nav>
         <div className="nav-actions">
@@ -39,7 +39,7 @@ export function SiteFooter() {
         <div>
           <h4>Sản phẩm</h4>
           <a href="/loai-hinh">Loại hình</a>
-          <a href="/#bang-gia">Bảng giá</a>
+          <a href="/bang-gia">Bảng giá</a>
           <a href="/#giay-phep">Tra cứu giấy phép</a>
         </div>
         <div>

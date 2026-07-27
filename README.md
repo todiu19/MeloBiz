@@ -42,6 +42,21 @@ API auth:
 - `POST /api/v1/auth/register`
 - `POST /api/v1/auth/forgot-password`
 
+## API loại hình kinh doanh
+
+Backend có dữ liệu 18 loại hình, trong đó 6 loại hình chính đã có nội dung sâu,
+playlist, lịch phát, FAQ và metadata SEO.
+
+- `GET /api/v1/industries`
+- `GET /api/v1/industries/groups`
+- `GET /api/v1/industries/:slug`
+- `GET /api/v1/industries/:slug/playlists`
+- `GET /api/v1/industries/:slug/schedule`
+- `GET /api/v1/industries/:slug/related`
+
+Xem bộ lọc, response mẫu và cấu trúc dữ liệu tại
+[`backend/README.md`](backend/README.md).
+
 ## Chạy riêng
 
 ```powershell

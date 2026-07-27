@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import { config } from "./config.js";
 import { authRouter } from "./routes/auth.routes.js";
+import { industryRouter } from "./routes/industry.routes.js";
 import { licenseRouter } from "./routes/license.routes.js";
 import { publicRouter } from "./routes/public.routes.js";
 
@@ -31,6 +32,7 @@ app.get("/health", (_request, response) => {
 
 app.use("/api/v1/licenses", licenseRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/industries", industryRouter);
 app.use("/api/v1", publicRouter);
 
 app.use((_request, response) => {

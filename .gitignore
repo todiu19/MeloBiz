@@ -4,6 +4,7 @@ node_modules
 out
 dist
 *.png
+!frontend/public/images/*.png
 *.log
 .edge-debug
 *.log

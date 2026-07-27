@@ -14,9 +14,9 @@ export function SiteHeader() {
         <Logo />
         <nav>
           <a href="/loai-hinh">Loại hình</a>
-          <a href="/#cach-hoat-dong">Cách hoạt động</a>
+          <a href="/cach-hoat-dong">Cách hoạt động</a>
           <a href="/bang-gia">Bảng giá</a>
-          <a href="/#giay-phep">Giấy phép</a>
+          <a href="/giay-phep">Giấy phép</a>
         </nav>
         <div className="nav-actions">
           <a className="login" href="/dang-nhap">Đăng nhập</a>
@@ -40,12 +40,12 @@ export function SiteFooter() {
           <h4>Sản phẩm</h4>
           <a href="/loai-hinh">Loại hình</a>
           <a href="/bang-gia">Bảng giá</a>
-          <a href="/#giay-phep">Tra cứu giấy phép</a>
+          <a href="/giay-phep">Tra cứu giấy phép</a>
         </div>
         <div>
           <h4>Công ty</h4>
-          <a href="/">Về chúng tôi</a>
-          <a href="/#cach-hoat-dong">Cách hoạt động</a>
+          <a href="/gioi-thieu">Về chúng tôi</a>
+          <a href="/cach-hoat-dong">Cách hoạt động</a>
           <a href="mailto:hello@melobiz.vn">Liên hệ</a>
         </div>
         <div>

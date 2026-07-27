@@ -36,6 +36,15 @@ Các trang tài khoản:
 - `/dang-ky`
 - `/quen-mat-khau`
 
+Các trang nội dung chính đều dùng route riêng:
+
+- `/gioi-thieu`
+- `/loai-hinh`
+- `/loai-hinh/:slug`
+- `/cach-hoat-dong`
+- `/bang-gia`
+- `/giay-phep`
+
 API auth:
 
 - `POST /api/v1/auth/login`

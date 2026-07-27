@@ -4,12 +4,12 @@ import { FormEvent, useState } from "react";
 import { Logo, SiteFooter, SiteHeader } from "../components/SiteChrome";
 
 const businessTypes = [
-  { icon: "01", name: "Quán cà phê", note: "Lo-fi · Acoustic · Jazz", mood: "Chậm & ấm" },
-  { icon: "02", name: "Nhà hàng", note: "Lounge · Classical · Chill", mood: "Tinh tế" },
-  { icon: "03", name: "Spa & Wellness", note: "Ambient · Nature · Piano", mood: "Thư giãn" },
-  { icon: "04", name: "Phòng gym", note: "EDM · Pop · Workout", mood: "Năng lượng" },
-  { icon: "05", name: "Khách sạn", note: "Elegant · Piano · Lounge", mood: "Thanh lịch" },
-  { icon: "06", name: "Cửa hàng", note: "Indie · Pop · Seasonal", mood: "Tươi mới" },
+  { icon: "01", slug: "quan-ca-phe", name: "Quán cà phê", note: "Lo-fi · Acoustic · Jazz", mood: "Chậm & ấm" },
+  { icon: "02", slug: "nha-hang", name: "Nhà hàng", note: "Lounge · Classical · Chill", mood: "Tinh tế" },
+  { icon: "03", slug: "spa-wellness", name: "Spa & Wellness", note: "Ambient · Nature · Piano", mood: "Thư giãn" },
+  { icon: "04", slug: "phong-gym", name: "Phòng gym", note: "EDM · Pop · Workout", mood: "Năng lượng" },
+  { icon: "05", slug: "khach-san", name: "Khách sạn", note: "Elegant · Piano · Lounge", mood: "Thanh lịch" },
+  { icon: "06", slug: "cua-hang-ban-le", name: "Cửa hàng", note: "Indie · Pop · Seasonal", mood: "Tươi mới" },
 ];
 
 const faqs = [
@@ -31,49 +31,37 @@ const faqs = [
   },
 ];
 
-function PlayerMockup() {
+function CafeHeroVisual() {
   return (
-    <div className="player-wrap" aria-label="Mô phỏng trình phát MeloBiz">
-      <div className="orb orb-one" />
-      <div className="orb orb-two" />
-      <div className="player-card">
-        <div className="window-bar">
-          <Logo />
-          <span className="online"><b /> Đang phát tại Quận 1</span>
+    <figure className="cafe-visual">
+      <img
+        src="/images/cafe-hero-warm.png"
+        alt="Không gian quán cà phê ấm cúng với ánh nắng sớm và một tách cà phê"
+      />
+      <div className="cafe-visual-label">
+        <span><i /> Đang phát tại Quận 1</span>
+        <b>07:32 · Morning mood</b>
+      </div>
+      <div className="warm-player">
+        <span className="warm-player-art">MB</span>
+        <div className="warm-player-copy">
+          <small>MELOBIZ SELECTS</small>
+          <strong>Morning on the balcony</strong>
+          <span>Acoustic · Lo-fi · Dịu nhẹ</span>
         </div>
-        <div className="player-grid">
-          <aside>
-            <span>TỔNG QUAN</span>
-            <a className="active">♫ &nbsp; Khám phá</a>
-            <a>♡ &nbsp; Đã lưu</a>
-            <span>KHÔNG GIAN</span>
-            <a>☕ &nbsp; Quán cà phê</a>
-            <a>◌ &nbsp; Spa</a>
-            <a>⚡ &nbsp; Gym</a>
-          </aside>
-          <main>
-            <div className="playlist-head">
-              <small>PLAYLIST DÀNH CHO BẠN</small>
-              <h3>Buổi sáng dịu êm</h3>
-              <p>Acoustic & lo-fi cho một ngày mới nhẹ nhàng.</p>
-            </div>
-            <div className="track"><span className="art art-a">M</span><div><b>Morning on the balcony</b><small>Mayfield · 03:24</small></div><i>•••</i></div>
-            <div className="track"><span className="art art-b">S</span><div><b>Softly, we begin</b><small>Sonder · 02:51</small></div><i>•••</i></div>
-            <div className="track playing"><span className="art art-c">A</span><div><b>April breeze</b><small>Aster · 03:08</small></div><i className="bars">▂▅▃▆</i></div>
-          </main>
-        </div>
-        <div className="now-playing">
-          <span className="art art-c">A</span>
-          <div><b>April breeze</b><small>Aster</small></div>
-          <button aria-label="Bài trước">‹</button>
-          <button className="play" aria-label="Tạm dừng">Ⅱ</button>
-          <button aria-label="Bài sau">›</button>
-          <div className="progress"><i /></div>
-          <span>2:14 / 3:08</span>
+        <button type="button" aria-label="Tạm dừng">Ⅱ</button>
+        <div className="warm-player-wave" aria-hidden="true">
+          {Array.from({ length: 18 }).map((_, index) => (
+            <i key={index} style={{ height: `${8 + ((index * 7) % 19)}px` }} />
+          ))}
         </div>
       </div>
-      <div className="floating-note"><b>1.200+</b><span>bản nhạc có bản quyền</span></div>
-    </div>
+      <figcaption>
+        <span>Không quảng cáo</span>
+        <span>Chuyển bài êm</span>
+        <span>Nhạc đúng bản quyền</span>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -124,19 +112,19 @@ export default function Home() {
       <section className="hero">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow"><span>♪</span> NHẠC BẢN QUYỀN CHO DOANH NGHIỆP</div>
-            <h1>Không gian đúng gu.<br /><em>Âm nhạc đúng luật.</em></h1>
-            <p>Kho nhạc được tuyển chọn và cấp phép cho quán cà phê, nhà hàng, spa và cửa hàng. Bật nhạc trong vài phút, an tâm vận hành mỗi ngày.</p>
+            <div className="eyebrow"><span>♪</span> ÂM NHẠC CHO NHỮNG KHÔNG GIAN DỄ MẾN</div>
+            <h1>Một chút nhạc hay.<br /><em>Một ngày thật dịu.</em></h1>
+            <p>MeloBiz chọn sẵn những playlist ấm áp cho quán cà phê, nhà hàng và không gian dịch vụ. Bạn chỉ cần mở lên, chúng tôi chăm từng nhịp còn lại.</p>
             <div className="hero-actions">
               <a className="button" href="/dang-ky">Dùng thử 14 ngày <span>→</span></a>
-              <a className="text-link" href="#giai-phap"><i>▶</i> Nghe thử playlist</a>
+              <a className="text-link" href="/loai-hinh/quan-ca-phe"><i>▶</i> Nghe mood quán cà phê</a>
             </div>
             <div className="trust-row">
               <div className="avatars"><span>H</span><span>M</span><span>T</span><span>+</span></div>
-              <p><b>Được tin dùng bởi 200+ không gian</b><br />từ quán nhỏ đến chuỗi cửa hàng</p>
+              <p><b>Đang đồng hành cùng 200+ không gian</b><br />từ góc cà phê nhỏ đến chuỗi cửa hàng</p>
             </div>
           </div>
-          <PlayerMockup />
+          <CafeHeroVisual />
         </div>
       </section>
 
@@ -162,7 +150,7 @@ export default function Home() {
                 <div className="type-top"><i>{type.icon}</i><span>{type.mood}</span></div>
                 <h3>{type.name}</h3>
                 <p>{type.note}</p>
-                <a href="/loai-hinh">Khám phá <span>→</span></a>
+                <a href={`/loai-hinh/${type.slug}`}>Khám phá <span>→</span></a>
               </article>
             ))}
           </div>

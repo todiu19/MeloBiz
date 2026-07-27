@@ -1,7 +1,11 @@
 import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "../../../components/SiteChrome";
-import { getIndustry, industries } from "../../../data/industries";
+import { industries } from "../../../data/industries";
+import {
+  findIndustry,
+  listRelatedIndustries,
+} from "../../../lib/industries";
 
 export function generateStaticParams() {
   return industries.map(({ slug }) => ({ slug }));
@@ -13,10 +17,10 @@ export default async function IndustryDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const industry = getIndustry(slug);
+  const industry = await findIndustry(slug);
   if (!industry) notFound();
 
-  const related = industries.filter((item) => item.slug !== industry.slug).slice(0, 3);
+  const related = await listRelatedIndustries(industry);
   const pageStyle = { "--industry-accent": industry.accent } as CSSProperties;
 
   return (

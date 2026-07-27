@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { SiteFooter, SiteHeader } from "../../components/SiteChrome";
-import { additionalIndustries, industries } from "../../data/industries";
+import { listIndustries } from "../../lib/industries";
 
 export const metadata: Metadata = {
   title: "Nhạc cho mọi loại hình kinh doanh | MeloBiz",
   description: "Playlist bản quyền được thiết kế riêng cho quán cà phê, nhà hàng, spa, gym, khách sạn và cửa hàng bán lẻ.",
 };
 
-export default function IndustryIndexPage() {
+export default async function IndustryIndexPage() {
+  const catalog = await listIndustries();
+  const featuredIndustries = catalog
+    .filter((industry) => industry.featured !== false)
+    .slice(0, 6);
+  const moreIndustries = catalog.filter(
+    (industry) =>
+      !featuredIndustries.some((featured) => featured.slug === industry.slug),
+  );
+
   return (
     <main className="industry-page">
       <SiteHeader />
@@ -22,7 +32,7 @@ export default function IndustryIndexPage() {
           </div>
           <figure className="industry-hero-image">
             <img src="/images/business-spaces-hero.png" alt="Không gian cà phê, nhà hàng, spa và phòng gym" />
-            <figcaption><strong>06</strong><span>giải pháp chuyên sâu<br />đã sẵn sàng</span></figcaption>
+            <figcaption><strong>{catalog.length}</strong><span>loại hình có thể<br />khám phá ngay</span></figcaption>
           </figure>
         </div>
       </section>
@@ -35,12 +45,12 @@ export default function IndustryIndexPage() {
           </div>
 
           <div className="industry-card-grid">
-            {industries.map((industry) => (
+            {featuredIndustries.map((industry) => (
               <a
                 className="industry-card"
                 href={`/loai-hinh/${industry.slug}`}
                 key={industry.slug}
-                style={{ "--card-accent": industry.accent } as React.CSSProperties}
+                style={{ "--card-accent": industry.accent } as CSSProperties}
               >
                 <div className="industry-card-top"><span>{industry.number}</span><i>↗</i></div>
                 <div>
@@ -56,7 +66,13 @@ export default function IndustryIndexPage() {
           <div className="more-industries">
             <div><span className="page-kicker">VÀ CÒN NHIỀU HƠN</span><h2>Giải pháp cho mọi điểm chạm</h2></div>
             <div className="industry-chip-grid">
-              {additionalIndustries.map((name, index) => <span key={name}><b>{String(index + 7).padStart(2, "0")}</b>{name}</span>)}
+              {moreIndustries.map((industry) => (
+                <a href={`/loai-hinh/${industry.slug}`} key={industry.slug}>
+                  <b>{industry.number}</b>
+                  <span>{industry.name}</span>
+                  <i>↗</i>
+                </a>
+              ))}
             </div>
           </div>
         </div>

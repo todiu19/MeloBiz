@@ -2726,7 +2726,7 @@ footer .logo-mark i {
   border-top: 1px solid var(--line);
 }
 
-.industry-chip-grid > span {
+.industry-chip-grid > a {
   display: flex;
   align-items: center;
   gap: 13px;
@@ -2734,11 +2734,28 @@ footer .logo-mark i {
   border-bottom: 1px solid var(--line);
   font-size: 10px;
   font-weight: 600;
+  transition: color 0.2s ease, padding 0.2s ease, background 0.2s ease;
+}
+
+.industry-chip-grid > a:hover {
+  padding-inline: 13px;
+  color: var(--green);
+  background: rgba(220, 168, 115, 0.08);
 }
 
 .industry-chip-grid b {
   color: var(--green);
   font-size: 8px;
+}
+
+.industry-chip-grid a > span {
+  flex: 1;
+}
+
+.industry-chip-grid a > i {
+  font-size: 12px;
+  font-style: normal;
+  opacity: 0.55;
 }
 
 .compact-cta {
@@ -4125,7 +4142,7 @@ footer .logo-mark i {
 }
 
 .industry-chip-grid,
-.industry-chip-grid > span,
+.industry-chip-grid > a,
 .more-industries {
   border-color: rgba(81, 57, 43, 0.11);
 }

@@ -2,6 +2,8 @@ export interface Industry {
   slug: string;
   number: string;
   name: string;
+  featured?: boolean;
+  hasDetail?: boolean;
   title: string;
   short: string;
   description: string;
@@ -11,6 +13,44 @@ export interface Industry {
   playlists: Array<{ name: string; mood: string; tracks: number }>;
   schedule: Array<{ time: string; label: string; sound: string }>;
   benefits: string[];
+}
+
+type CompactIndustrySeed = {
+  slug: string;
+  number: string;
+  name: string;
+  mood: string;
+  genres: string[];
+  accent: string;
+  title?: string;
+};
+
+function createCompactIndustry(seed: CompactIndustrySeed): Industry {
+  const short = `Playlist phù hợp với nhịp vận hành và cá tính của ${seed.name.toLowerCase()}.`;
+
+  return {
+    ...seed,
+    featured: false,
+    hasDetail: false,
+    title: seed.title ?? `Nhạc phù hợp cho ${seed.name.toLowerCase()}`,
+    short,
+    description: `MeloBiz xây dựng không gian âm thanh riêng cho ${seed.name.toLowerCase()}, tự động thay đổi theo khung giờ, có quyền sử dụng rõ ràng và quản lý tập trung.`,
+    playlists: [
+      { name: "Gentle Opening", mood: "Đón khách", tracks: 36 },
+      { name: "Daily Flow", mood: "Nhịp chính", tracks: 42 },
+      { name: "Soft Closing", mood: "Cuối ngày", tracks: 34 },
+    ],
+    schedule: [
+      { time: "08:00", label: "Mở cửa", sound: seed.genres[0] ?? "Chill nhẹ" },
+      { time: "13:00", label: "Nhịp chính", sound: seed.genres[1] ?? "Modern lounge" },
+      { time: "19:00", label: "Cuối ngày", sound: seed.genres[2] ?? "Soft ambient" },
+    ],
+    benefits: [
+      "Quyền sử dụng rõ ràng",
+      "Playlist theo không gian",
+      "Quản lý nhiều điểm phát",
+    ],
+  };
 }
 
 export const industries: Industry[] = [
@@ -146,21 +186,102 @@ export const industries: Industry[] = [
     ],
     benefits: ["Cập nhật theo mùa", "Không lặp quảng cáo", "Đồng nhất toàn chuỗi"],
   },
-];
-
-export const additionalIndustries = [
-  "Quán bar & lounge",
-  "Salon tóc",
-  "Siêu thị",
-  "Trung tâm thương mại",
-  "Phòng khám",
-  "Nha khoa",
-  "Showroom ô tô",
-  "Văn phòng",
-  "Khu vui chơi",
-  "Sân bay",
-  "Phòng trà",
-  "Coworking space",
+  createCompactIndustry({
+    slug: "quan-bar-lounge",
+    number: "07",
+    name: "Quán bar & lounge",
+    mood: "Cuốn hút",
+    genres: ["Lounge", "Soul", "Electronic"],
+    accent: "#bf7b64",
+  }),
+  createCompactIndustry({
+    slug: "salon-toc",
+    number: "08",
+    name: "Salon tóc",
+    mood: "Thời thượng",
+    genres: ["Pop", "R&B", "Chill"],
+    accent: "#c995a1",
+  }),
+  createCompactIndustry({
+    slug: "sieu-thi",
+    number: "09",
+    name: "Siêu thị",
+    mood: "Thân thiện",
+    genres: ["Easy pop", "Acoustic", "Seasonal"],
+    accent: "#b99b63",
+  }),
+  createCompactIndustry({
+    slug: "trung-tam-thuong-mai",
+    number: "10",
+    name: "Trung tâm thương mại",
+    mood: "Hiện đại",
+    genres: ["Pop", "Lounge", "Seasonal"],
+    accent: "#a7826b",
+  }),
+  createCompactIndustry({
+    slug: "phong-kham",
+    number: "11",
+    name: "Phòng khám",
+    mood: "An tâm",
+    genres: ["Piano", "Ambient", "Acoustic"],
+    accent: "#8cac9d",
+  }),
+  createCompactIndustry({
+    slug: "nha-khoa",
+    number: "12",
+    name: "Nha khoa",
+    mood: "Nhẹ nhàng",
+    genres: ["Ambient", "Piano", "Nature"],
+    accent: "#93aaa5",
+  }),
+  createCompactIndustry({
+    slug: "showroom-o-to",
+    number: "13",
+    name: "Showroom ô tô",
+    mood: "Cao cấp",
+    genres: ["Electronic", "Lounge", "Modern"],
+    accent: "#8c8780",
+  }),
+  createCompactIndustry({
+    slug: "van-phong",
+    number: "14",
+    name: "Văn phòng",
+    mood: "Tập trung",
+    genres: ["Lo-fi", "Ambient", "Instrumental"],
+    accent: "#9b927c",
+  }),
+  createCompactIndustry({
+    slug: "quan-nhau",
+    number: "15",
+    name: "Quán nhậu",
+    mood: "Rộn ràng",
+    genres: ["Pop", "Rock", "V-Pop"],
+    accent: "#c27c55",
+  }),
+  createCompactIndustry({
+    slug: "khu-vui-choi",
+    number: "16",
+    name: "Khu vui chơi",
+    mood: "Vui tươi",
+    genres: ["Happy pop", "Kids", "Upbeat"],
+    accent: "#d09a63",
+  }),
+  createCompactIndustry({
+    slug: "san-bay",
+    number: "17",
+    name: "Sân bay",
+    mood: "Thư thái",
+    genres: ["Ambient", "Piano", "World"],
+    accent: "#899b9c",
+  }),
+  createCompactIndustry({
+    slug: "phong-tra",
+    number: "18",
+    name: "Phòng trà & lounge",
+    mood: "Sâu lắng",
+    genres: ["Jazz", "Acoustic", "Soul"],
+    accent: "#a27360",
+  }),
 ];
 
 export function getIndustry(slug: string) {

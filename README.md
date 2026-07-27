@@ -47,6 +47,15 @@ API auth:
 Backend có dữ liệu 18 loại hình, trong đó 6 loại hình chính đã có nội dung sâu,
 playlist, lịch phát, FAQ và metadata SEO.
 
+Frontend ưu tiên đọc danh mục và trang chi tiết từ API này. Nếu backend tạm
+không phản hồi, frontend dùng bộ dữ liệu fallback 18 loại hình để các đường dẫn
+vẫn hoạt động. Cấu hình kết nối trong `frontend/.env.local`:
+
+```text
+API_URL=http://localhost:4000/api/v1
+NEXT_PUBLIC_API_URL=http://localhost:4000/api/v1
+```
+
 - `GET /api/v1/industries`
 - `GET /api/v1/industries/groups`
 - `GET /api/v1/industries/:slug`

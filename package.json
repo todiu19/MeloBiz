@@ -3,20 +3,25 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "vinext dev",
+    "build": "vinext build && node scripts/prepare-sites.mjs",
+    "start": "vinext start",
     "lint": "next lint"
   },
   "dependencies": {
     "next": "16.2.12",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-server-dom-webpack": "^19.2.8",
+    "vinext": "^1.0.0-beta.4"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.2",
-    "typescript": "^5.7.2"
+    "@vitejs/plugin-react": "^6.0.4",
+    "@vitejs/plugin-rsc": "^0.5.30",
+    "typescript": "^5.7.2",
+    "vite": "^8.1.5"
   }
 }

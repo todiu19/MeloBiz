@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Logo } from "./SiteChrome";
+import { Logo } from "@/components/layout/SiteChrome";
 
 type AuthMode = "login" | "register" | "forgot";
 

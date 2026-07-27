@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteFooter, SiteHeader } from "../../components/SiteChrome";
+import { SiteFooter, SiteHeader } from "@/components/layout/SiteChrome";
 
 export const metadata: Metadata = {
   title: "Bảng giá nhạc bản quyền | MeloBiz",

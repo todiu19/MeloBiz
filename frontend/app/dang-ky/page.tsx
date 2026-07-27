@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AuthPanel } from "../../components/AuthPanel";
+import { AuthPanel } from "@/components/auth/AuthPanel";
 
 export const metadata: Metadata = {
   title: "Đăng ký dùng thử | MeloBiz",

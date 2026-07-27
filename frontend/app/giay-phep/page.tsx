@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { LicenseLookupPanel } from "../../components/LicenseLookupPanel";
-import { SiteFooter, SiteHeader } from "../../components/SiteChrome";
+import { LicenseLookupPanel } from "@/components/license/LicenseLookupPanel";
+import { SiteFooter, SiteHeader } from "@/components/layout/SiteChrome";
 
 export const metadata: Metadata = {
   title: "Giấy phép và tra cứu | MeloBiz",

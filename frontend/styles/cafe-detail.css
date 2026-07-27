@@ -1,0 +1,173 @@
+/* Café detail: a richer, calmer listening preview */
+.industry-quan-ca-phe .detail-hero {
+  background:
+    radial-gradient(circle at 10% 15%, rgba(211, 161, 111, 0.18), transparent 22rem),
+    linear-gradient(135deg, #f4e9d9, #eee0cd);
+}
+
+.industry-quan-ca-phe .sound-console {
+  padding: 12px;
+  border: 1px solid rgba(87, 58, 40, 0.12);
+  border-radius: 30px;
+  background: rgba(255, 251, 244, 0.88);
+  box-shadow: 0 32px 80px rgba(68, 43, 28, 0.16);
+}
+
+.industry-quan-ca-phe .console-head {
+  padding: 5px 9px 13px;
+  color: #79685d;
+}
+
+.industry-quan-ca-phe .console-cover {
+  position: relative;
+  min-height: 250px;
+  overflow: hidden;
+  border-radius: 21px;
+  background:
+    linear-gradient(180deg, rgba(48, 32, 23, 0.04) 22%, rgba(48, 32, 23, 0.8) 100%),
+    url("/images/cafe-hero-warm.png") 66% center / cover;
+}
+
+.industry-quan-ca-phe .console-cover::after {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  color: #fff5e9;
+  background: rgba(55, 37, 27, 0.48);
+  content: "07:32 · MORNING";
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  backdrop-filter: blur(10px);
+}
+
+.industry-quan-ca-phe .console-cover > span,
+.industry-quan-ca-phe .console-cover > div {
+  position: relative;
+  z-index: 1;
+}
+
+.industry-quan-ca-phe .console-cover > span {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(64, 42, 30, 0.42);
+  backdrop-filter: blur(9px);
+}
+
+.industry-quan-ca-phe .console-cover small {
+  color: #efc291;
+}
+
+.industry-quan-ca-phe .console-wave {
+  height: 76px;
+}
+
+.industry-quan-ca-phe .console-wave i {
+  background: #b47b57;
+  opacity: 0.58;
+}
+
+.industry-quan-ca-phe .playlist-cards article {
+  padding: 12px;
+  border-color: rgba(88, 60, 43, 0.1);
+  border-radius: 22px;
+  background: #fffaf3;
+  box-shadow: 0 16px 45px rgba(71, 47, 31, 0.07);
+}
+
+.industry-quan-ca-phe .playlist-art {
+  position: relative;
+  height: 215px;
+  overflow: hidden;
+  border-radius: 16px;
+  isolation: isolate;
+}
+
+.industry-quan-ca-phe .playlist-art::before {
+  position: absolute;
+  z-index: -1;
+  top: -35%;
+  right: -20%;
+  width: 230px;
+  height: 230px;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 24px rgba(255, 255, 255, 0.05),
+    0 0 0 48px rgba(255, 255, 255, 0.035);
+}
+
+.industry-quan-ca-phe .playlist-art.art-1 {
+  background: linear-gradient(145deg, #4f382c, #bd835d);
+}
+
+.industry-quan-ca-phe .playlist-art.art-2 {
+  background: linear-gradient(145deg, #806d58, #d7b990);
+}
+
+.industry-quan-ca-phe .playlist-art.art-3 {
+  background: linear-gradient(145deg, #68463a, #ce8e69);
+}
+
+.industry-quan-ca-phe .playlist-art > i {
+  color: #56392a;
+  background: #f1d8b7;
+}
+
+@media (max-width: 900px) {
+  .auth-page {
+    grid-template-columns: 0.86fr 1.14fr;
+  }
+
+  .auth-form-side {
+    padding-inline: 28px;
+  }
+
+  .auth-form-wrap {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 680px) {
+  .auth-page {
+    background:
+      radial-gradient(circle at 100% 0, rgba(208, 157, 107, 0.18), transparent 22rem),
+      #f8f0e5;
+  }
+
+  .auth-form-side {
+    padding: 18px 18px 40px;
+    background: transparent;
+  }
+
+  .auth-form-side::before {
+    display: none;
+  }
+
+  .auth-mobile-logo {
+    width: 100%;
+    margin-bottom: 34px;
+  }
+
+  .auth-form-wrap {
+    padding: 27px 20px;
+    border-radius: 22px;
+    box-shadow: 0 18px 50px rgba(72, 46, 30, 0.08);
+  }
+
+  .auth-form-wrap > h1 {
+    font-size: 34px;
+    letter-spacing: -1.7px;
+  }
+
+  .industry-quan-ca-phe .console-cover {
+    min-height: 210px;
+  }
+
+  .industry-quan-ca-phe .playlist-art {
+    height: 190px;
+  }
+}

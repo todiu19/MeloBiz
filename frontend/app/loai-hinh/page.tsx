@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import { SiteFooter, SiteHeader } from "../../components/SiteChrome";
-import { listIndustries } from "../../lib/industries";
+import { SiteFooter, SiteHeader } from "@/components/layout/SiteChrome";
+import { listIndustries } from "@/services/industries";
 
 export const metadata: Metadata = {
   title: "Nhạc cho mọi loại hình kinh doanh | MeloBiz",

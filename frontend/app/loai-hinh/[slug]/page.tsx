@@ -1,11 +1,11 @@
 import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
-import { SiteFooter, SiteHeader } from "../../../components/SiteChrome";
-import { industries } from "../../../data/industries";
+import { SiteFooter, SiteHeader } from "@/components/layout/SiteChrome";
+import { industries } from "@/data/industries";
 import {
   findIndustry,
   listRelatedIndustries,
-} from "../../../lib/industries";
+} from "@/services/industries";
 
 export function generateStaticParams() {
   return industries.map(({ slug }) => ({ slug }));

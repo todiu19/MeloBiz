@@ -1,33 +1,14 @@
-import { SiteFooter, SiteHeader } from "../components/SiteChrome";
+import { HomeFaq } from "@/components/home/HomeFaq";
+import { HomeLicenseLookup } from "@/components/home/HomeLicenseLookup";
+import { SiteFooter, SiteHeader } from "@/components/layout/SiteChrome";
 
 const businessTypes = [
   { icon: "01", slug: "quan-ca-phe", name: "Quán cà phê", note: "Lo-fi · Acoustic · Jazz", mood: "Chậm & ấm" },
   { icon: "02", slug: "nha-hang", name: "Nhà hàng", note: "Lounge · Classical · Chill", mood: "Tinh tế" },
   { icon: "03", slug: "spa-wellness", name: "Spa & Wellness", note: "Ambient · Nature · Piano", mood: "Thư giãn" },
-];
-
-const mainPaths = [
-  {
-    number: "01",
-    title: "Cách hoạt động",
-    description: "Bốn bước từ tạo không gian đến lịch phát tự động.",
-    href: "/cach-hoat-dong",
-    meta: "Khoảng 3 phút để bắt đầu",
-  },
-  {
-    number: "02",
-    title: "Bảng giá",
-    description: "Một gói đầy đủ, thêm điểm phát khi doanh nghiệp lớn lên.",
-    href: "/bang-gia",
-    meta: "Từ 199.000₫ / tháng",
-  },
-  {
-    number: "03",
-    title: "Giấy phép",
-    description: "Tra cứu chứng nhận và hiểu rõ phạm vi sử dụng tại quán.",
-    href: "/giay-phep",
-    meta: "Minh bạch theo địa điểm",
-  },
+  { icon: "04", slug: "phong-gym", name: "Phòng gym", note: "EDM · Pop · Workout", mood: "Năng lượng" },
+  { icon: "05", slug: "khach-san", name: "Khách sạn", note: "Elegant · Piano · Lounge", mood: "Thanh lịch" },
+  { icon: "06", slug: "cua-hang-ban-le", name: "Cửa hàng", note: "Indie · Pop · Seasonal", mood: "Tươi mới" },
 ];
 
 function CafeHeroVisual() {
@@ -66,7 +47,7 @@ function CafeHeroVisual() {
 
 export default function Home() {
   return (
-    <main className="home-main" id="top">
+    <main id="top">
       <SiteHeader />
 
       <section className="hero">
@@ -99,13 +80,10 @@ export default function Home() {
 
       <section className="types" id="giai-phap">
         <div className="container">
-          <div className="home-types-head">
-            <div className="section-intro">
-              <span>BA KHÔNG GIAN TIÊU BIỂU</span>
-              <h2>Mỗi không gian, một chất nhạc riêng</h2>
-              <p>Chọn nhanh một không gian hoặc xem toàn bộ 18 loại hình.</p>
-            </div>
-            <a href="/loai-hinh">Xem tất cả loại hình <span>→</span></a>
+          <div className="section-intro centered">
+            <span>CHO MỌI KHÔNG GIAN</span>
+            <h2>Mỗi không gian, một chất nhạc riêng</h2>
+            <p>Playlist được tuyển chọn theo loại hình, thời điểm và cảm xúc bạn muốn tạo ra.</p>
           </div>
           <div className="type-grid">
             {businessTypes.map((type) => (
@@ -120,22 +98,81 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="home-paths">
+      <section className="legal-band">
+        <div className="container legal-grid">
+          <div>
+            <span className="mini-label">AN TÂM PHÁP LÝ</span>
+            <h2>Âm nhạc hay.<br />Giấy tờ <em>đầy đủ.</em></h2>
+          </div>
+          <div className="legal-points">
+            <article><i>✓</i><div><h3>Quyền sử dụng rõ ràng</h3><p>Phạm vi cấp phép minh bạch cho từng điểm kinh doanh.</p></div></article>
+            <article><i>✓</i><div><h3>Chứng từ doanh nghiệp</h3><p>Hợp đồng, giấy chứng nhận và hóa đơn VAT đầy đủ.</p></div></article>
+            <article><i>✓</i><div><h3>Tra cứu công khai</h3><p>Xác thực trạng thái giấy phép bằng mã số riêng.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="steps" id="cach-hoat-dong">
         <div className="container">
-          <div className="home-paths-head">
-            <div><span className="page-kicker">TÌM ĐÚNG THỨ BẠN CẦN</span><h2>Ba phần, xem riêng cho dễ</h2></div>
-            <p>Thông tin được chia thành từng trang ngắn. Bạn không cần đọc hết một trang dài.</p>
+          <div className="section-intro">
+            <span>ĐƠN GIẢN TỪ LẦN ĐẦU</span>
+            <h2>Ba bước để không gian có nhạc</h2>
           </div>
-          <div className="home-path-grid">
-            {mainPaths.map((item) => (
-              <a href={item.href} key={item.href}>
-                <div><span>{item.number}</span><i>↗</i></div>
-                <small>{item.meta}</small>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </a>
-            ))}
+          <div className="step-grid">
+            <article><b>01</b><i>→</i><h3>Tạo tài khoản</h3><p>Đăng ký doanh nghiệp trong một phút. Không cần thẻ tín dụng.</p></article>
+            <article><b>02</b><i>→</i><h3>Chọn đúng playlist</h3><p>Lọc theo không gian, tâm trạng hoặc thời điểm trong ngày.</p></article>
+            <article><b>03</b><h3>Bật nhạc & tận hưởng</h3><p>Quản lý mọi điểm phát từ một nơi, kèm lịch sử phát minh bạch.</p></article>
           </div>
+        </div>
+      </section>
+
+      <section className="brand-quote">
+        <div className="container quote-grid">
+          <div className="quote-art" aria-hidden="true">
+            <span className="record"><i /><b>MB</b></span>
+            <div className="sound-lines">{Array.from({length: 24}).map((_, i) => <i key={i} />)}</div>
+          </div>
+          <blockquote>
+            <span>ÂM NHẠC TẠO NÊN KHÔNG KHÍ</span>
+            <p>“Khách hàng có thể quên món họ gọi, nhưng sẽ nhớ cảm giác mà không gian của bạn để lại.”</p>
+            <footer>MeloBiz Editorial · 2026</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <section className="pricing" id="bang-gia">
+        <div className="container pricing-grid">
+          <div className="section-intro">
+            <span>GIÁ GỌN GÀNG, KHÔNG PHÍ ẨN</span>
+            <h2>Một gói.<br />Đủ mọi tính năng.</h2>
+            <p>Thêm điểm phát khi doanh nghiệp lớn lên. Hủy bất cứ lúc nào.</p>
+          </div>
+          <div className="price-card">
+            <div className="popular">PHỔ BIẾN NHẤT</div>
+            <div className="price-title"><div><h3>MeloBiz Pro</h3><p>Cho mọi loại hình kinh doanh</p></div><span>PRO</span></div>
+            <div className="price"><b>199.000₫</b><span>/ điểm phát / tháng</span></div>
+            <small>Giá chưa bao gồm VAT</small>
+            <ul>
+              <li>✓ Kho nhạc bản quyền không giới hạn</li>
+              <li>✓ Playlist tuyển chọn theo không gian</li>
+              <li>✓ Quản lý nhiều điểm phát & thành viên</li>
+              <li>✓ Giấy chứng nhận và hóa đơn VAT</li>
+              <li>✓ Lịch sử phát và hỗ trợ ưu tiên</li>
+            </ul>
+            <a className="button full" href="/dang-ky">Bắt đầu dùng thử <span>→</span></a>
+            <p className="card-note">14 ngày miễn phí · Không cần thẻ tín dụng</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="license" id="giay-phep">
+        <HomeLicenseLookup />
+      </section>
+
+      <section className="faq">
+        <div className="container faq-grid">
+          <div className="section-intro"><span>GIẢI ĐÁP NHANH</span><h2>Bạn có câu hỏi?</h2><p>Chưa tìm thấy câu trả lời? <a href="#lien-he">Trò chuyện với chuyên viên →</a></p></div>
+          <HomeFaq />
         </div>
       </section>
 

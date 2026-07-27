@@ -19,8 +19,8 @@ export function SiteHeader() {
           <a href="/#giay-phep">Giấy phép</a>
         </nav>
         <div className="nav-actions">
-          <a className="login" href="/#lien-he">Đăng nhập</a>
-          <a className="button button-small" href="/#dung-thu">Dùng thử miễn phí <span>↗</span></a>
+          <a className="login" href="/dang-nhap">Đăng nhập</a>
+          <a className="button button-small" href="/dang-ky">Dùng thử miễn phí <span>↗</span></a>
         </div>
       </div>
     </header>

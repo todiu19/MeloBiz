@@ -128,7 +128,7 @@ export default function Home() {
             <h1>Không gian đúng gu.<br /><em>Âm nhạc đúng luật.</em></h1>
             <p>Kho nhạc được tuyển chọn và cấp phép cho quán cà phê, nhà hàng, spa và cửa hàng. Bật nhạc trong vài phút, an tâm vận hành mỗi ngày.</p>
             <div className="hero-actions">
-              <a className="button" href="#dung-thu">Dùng thử 14 ngày <span>→</span></a>
+              <a className="button" href="/dang-ky">Dùng thử 14 ngày <span>→</span></a>
               <a className="text-link" href="#giai-phap"><i>▶</i> Nghe thử playlist</a>
             </div>
             <div className="trust-row">
@@ -230,7 +230,7 @@ export default function Home() {
               <li>✓ Giấy chứng nhận và hóa đơn VAT</li>
               <li>✓ Lịch sử phát và hỗ trợ ưu tiên</li>
             </ul>
-            <a className="button full" href="#dung-thu">Bắt đầu dùng thử <span>→</span></a>
+            <a className="button full" href="/dang-ky">Bắt đầu dùng thử <span>→</span></a>
             <p className="card-note">14 ngày miễn phí · Không cần thẻ tín dụng</p>
           </div>
         </div>
@@ -275,7 +275,7 @@ export default function Home() {
       <section className="cta" id="dung-thu">
         <div className="container cta-box">
           <div><span>BẮT ĐẦU NGAY HÔM NAY</span><h2>Cho không gian của bạn<br />một chất nhạc riêng.</h2></div>
-          <div><a className="button button-light" href="mailto:hello@melobiz.vn">Dùng thử 14 ngày <span>→</span></a><p>Không cần thẻ · Hủy bất cứ lúc nào</p></div>
+          <div><a className="button button-light" href="/dang-ky">Dùng thử 14 ngày <span>→</span></a><p>Không cần thẻ · Hủy bất cứ lúc nào</p></div>
           <div className="wave">{Array.from({length: 36}).map((_, i) => <i key={i} style={{height: `${12 + ((i * 17) % 42)}px`}} />)}</div>
         </div>
       </section>

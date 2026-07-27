@@ -9,6 +9,8 @@ for (const route of [
   { name: "home", path: "/" },
   { name: "industries", path: "/loai-hinh" },
   { name: "cafe", path: "/loai-hinh/quan-ca-phe" },
+  { name: "login", path: "/dang-nhap" },
+  { name: "register", path: "/dang-ky" },
 ]) {
   for (const viewport of [
     { name: "mobile", width: 390, height: 1000 },

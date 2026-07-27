@@ -23,6 +23,25 @@ npm.cmd run dev
 - Frontend: http://localhost:3001
 - Backend health check: http://localhost:4000/health
 
+## Tài khoản demo
+
+```text
+Email: demo@melobiz.vn
+Mật khẩu: Demo@123
+```
+
+Các trang tài khoản:
+
+- `/dang-nhap`
+- `/dang-ky`
+- `/quen-mat-khau`
+
+API auth:
+
+- `POST /api/v1/auth/login`
+- `POST /api/v1/auth/register`
+- `POST /api/v1/auth/forgot-password`
+
 ## Chạy riêng
 
 ```powershell

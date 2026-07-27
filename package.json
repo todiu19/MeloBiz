@@ -1,28 +1,24 @@
 {
-  "name": "melobiz-web",
+  "name": "melobiz-platform",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build && node scripts/prepare-sites.mjs",
-    "start": "vinext start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "16.2.12",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "react-server-dom-webpack": "^19.2.8",
-    "vinext": "^1.0.0-beta.4"
+    "dev": "concurrently -n FE,BE -c cyan,green \"npm:dev:frontend\" \"npm:dev:backend\"",
+    "dev:frontend": "npm run dev --workspace @melobiz/frontend",
+    "dev:backend": "npm run dev --workspace @melobiz/backend",
+    "build": "npm run build --workspace @melobiz/frontend && npm run build --workspace @melobiz/backend && node scripts/prepare-sites.mjs",
+    "build:frontend": "npm run build --workspace @melobiz/frontend",
+    "build:backend": "npm run build --workspace @melobiz/backend",
+    "start:frontend": "npm run start --workspace @melobiz/frontend",
+    "start:backend": "npm run start --workspace @melobiz/backend",
+    "check:layout": "node scripts/check-layout.mjs"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.2",
-    "@vitejs/plugin-react": "^6.0.4",
-    "@vitejs/plugin-rsc": "^0.5.30",
-    "playwright-core": "^1.62.0",
-    "typescript": "^5.7.2",
-    "vite": "^8.1.5"
+    "concurrently": "^9.2.1",
+    "playwright-core": "^1.62.0"
   }
 }

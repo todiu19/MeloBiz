@@ -90,13 +90,39 @@ export default function Home() {
   const [lookup, setLookup] = useState("");
   const [lookupResult, setLookupResult] = useState("");
 
-  function handleLookup(e: FormEvent) {
+  async function handleLookup(e: FormEvent) {
     e.preventDefault();
-    setLookupResult(
-      lookup.trim()
-        ? "Đây là bản demo. Mã giấy phép chưa được kết nối với cơ sở dữ liệu."
-        : "Vui lòng nhập mã giấy phép hoặc mã số thuế."
-    );
+    const query = lookup.trim();
+
+    if (!query) {
+      setLookupResult("Vui lòng nhập mã giấy phép hoặc mã số thuế.");
+      return;
+    }
+
+    const apiUrl =
+      process.env.NEXT_PUBLIC_API_URL ??
+      (window.location.hostname === "localhost"
+        ? "http://localhost:4000/api/v1"
+        : "");
+
+    if (!apiUrl) {
+      setLookupResult("Bản website demo chưa kết nối API production.");
+      return;
+    }
+
+    setLookupResult("Đang kiểm tra giấy phép...");
+
+    try {
+      const response = await fetch(`${apiUrl}/licenses/lookup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      });
+      const result = (await response.json()) as { message?: string };
+      setLookupResult(result.message ?? "Không thể đọc kết quả tra cứu.");
+    } catch {
+      setLookupResult("Không thể kết nối máy chủ. Hãy kiểm tra backend đang chạy.");
+    }
   }
 
   return (

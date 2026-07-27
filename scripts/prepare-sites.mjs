@@ -1,18 +1,22 @@
-import { copyFile, mkdir } from "node:fs/promises";
+import { copyFile, cp, mkdir, rm } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const root = process.cwd();
-const dist = resolve(root, "dist");
+const frontendDist = resolve(root, "frontend", "dist");
+const outputDist = resolve(root, "dist");
+
+await rm(outputDist, { recursive: true, force: true });
+await cp(frontendDist, outputDist, { recursive: true });
 
 await copyFile(
-  resolve(dist, "server", "index.mjs"),
-  resolve(dist, "server", "index.js"),
+  resolve(outputDist, "server", "index.mjs"),
+  resolve(outputDist, "server", "index.js"),
 );
 
-await mkdir(resolve(dist, ".openai"), { recursive: true });
+await mkdir(resolve(outputDist, ".openai"), { recursive: true });
 await copyFile(
   resolve(root, ".openai", "hosting.json"),
-  resolve(dist, ".openai", "hosting.json"),
+  resolve(outputDist, ".openai", "hosting.json"),
 );
 
-console.log("Sites package prepared: dist/server/index.js");
+console.log("Sites package prepared from frontend/dist.");

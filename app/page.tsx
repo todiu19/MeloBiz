@@ -3,12 +3,12 @@
 import { FormEvent, useState } from "react";
 
 const businessTypes = [
-  { icon: "☕", name: "Quán cà phê", note: "Lo-fi · Acoustic · Jazz" },
-  { icon: "🍽", name: "Nhà hàng", note: "Lounge · Classical · Chill" },
-  { icon: "◌", name: "Spa & Wellness", note: "Ambient · Nature · Piano" },
-  { icon: "⚡", name: "Phòng gym", note: "EDM · Pop · Workout" },
-  { icon: "▣", name: "Khách sạn", note: "Elegant · Piano · Lounge" },
-  { icon: "✦", name: "Cửa hàng", note: "Indie · Pop · Seasonal" },
+  { icon: "01", name: "Quán cà phê", note: "Lo-fi · Acoustic · Jazz", mood: "Chậm & ấm" },
+  { icon: "02", name: "Nhà hàng", note: "Lounge · Classical · Chill", mood: "Tinh tế" },
+  { icon: "03", name: "Spa & Wellness", note: "Ambient · Nature · Piano", mood: "Thư giãn" },
+  { icon: "04", name: "Phòng gym", note: "EDM · Pop · Workout", mood: "Năng lượng" },
+  { icon: "05", name: "Khách sạn", note: "Elegant · Piano · Lounge", mood: "Thanh lịch" },
+  { icon: "06", name: "Cửa hàng", note: "Indie · Pop · Seasonal", mood: "Tươi mới" },
 ];
 
 const faqs = [
@@ -136,6 +136,15 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="proof-strip" aria-label="Số liệu nổi bật">
+        <div className="container proof-grid">
+          <div><strong>1.200+</strong><span>Bản nhạc cấp phép</span></div>
+          <div><strong>60+</strong><span>Playlist tuyển chọn</span></div>
+          <div><strong>200+</strong><span>Không gian tin dùng</span></div>
+          <div><strong>100%</strong><span>Chứng từ minh bạch</span></div>
+        </div>
+      </section>
+
       <section className="types" id="giai-phap">
         <div className="container">
           <div className="section-intro centered">
@@ -146,7 +155,7 @@ export default function Home() {
           <div className="type-grid">
             {businessTypes.map((type) => (
               <article key={type.name}>
-                <i>{type.icon}</i>
+                <div className="type-top"><i>{type.icon}</i><span>{type.mood}</span></div>
                 <h3>{type.name}</h3>
                 <p>{type.note}</p>
                 <a href="#dung-thu">Khám phá <span>→</span></a>
@@ -181,6 +190,20 @@ export default function Home() {
             <article><b>02</b><i>→</i><h3>Chọn đúng playlist</h3><p>Lọc theo không gian, tâm trạng hoặc thời điểm trong ngày.</p></article>
             <article><b>03</b><h3>Bật nhạc & tận hưởng</h3><p>Quản lý mọi điểm phát từ một nơi, kèm lịch sử phát minh bạch.</p></article>
           </div>
+        </div>
+      </section>
+
+      <section className="brand-quote">
+        <div className="container quote-grid">
+          <div className="quote-art" aria-hidden="true">
+            <span className="record"><i /><b>MB</b></span>
+            <div className="sound-lines">{Array.from({length: 24}).map((_, i) => <i key={i} />)}</div>
+          </div>
+          <blockquote>
+            <span>ÂM NHẠC TẠO NÊN KHÔNG KHÍ</span>
+            <p>“Khách hàng có thể quên món họ gọi, nhưng sẽ nhớ cảm giác mà không gian của bạn để lại.”</p>
+            <footer>MeloBiz Editorial · 2026</footer>
+          </blockquote>
         </div>
       </section>
 

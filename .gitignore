@@ -1,6 +1,10 @@
 .next
+.vinext
 node_modules
 out
 dist
+*.png
+*.log
+.edge-debug
 *.log
 .env*

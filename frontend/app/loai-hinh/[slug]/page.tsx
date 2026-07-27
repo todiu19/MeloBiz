@@ -20,7 +20,7 @@ export default async function IndustryDetailPage({
   const pageStyle = { "--industry-accent": industry.accent } as CSSProperties;
 
   return (
-    <main className="industry-detail-page" style={pageStyle}>
+    <main className={`industry-detail-page industry-${industry.slug}`} style={pageStyle}>
       <SiteHeader />
 
       <section className="detail-hero">

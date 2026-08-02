@@ -178,6 +178,46 @@
   gap: 16px;
 }
 
+.google-auth-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 49px;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  background: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.google-auth-button b {
+  color: #4285f4;
+  font-size: 16px;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  height: 1px;
+  content: "";
+  flex: 1;
+  background: var(--line);
+}
+
+.onboarding-page .auth-form-wrap {
+  width: min(520px, 100%);
+}
+
 .auth-row {
   display: grid;
   grid-template-columns: 1fr 1fr;

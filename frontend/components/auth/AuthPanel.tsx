@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Logo } from "@/components/layout/SiteChrome";
 
 type AuthMode = "login" | "register" | "forgot";
@@ -9,103 +9,80 @@ const content = {
   login: {
     eyebrow: "CHÀO MỪNG TRỞ LẠI",
     title: "Đăng nhập vào MeloBiz",
-    description: "Quản lý điểm phát, thành viên và giấy phép của doanh nghiệp.",
-    submit: "Đăng nhập",
+    description: "Dùng Google hoặc mã OTP được gửi tới email của bạn.",
   },
   register: {
     eyebrow: "DÙNG THỬ 14 NGÀY",
     title: "Tạo tài khoản doanh nghiệp",
-    description: "Thiết lập không gian đầu tiên trong vài phút. Không cần thẻ tín dụng.",
-    submit: "Tạo tài khoản miễn phí",
+    description: "Xác minh email bằng OTP, sau đó hoàn tất thông tin doanh nghiệp.",
   },
   forgot: {
-    eyebrow: "KHÔI PHỤC TÀI KHOẢN",
-    title: "Quên mật khẩu?",
-    description: "Nhập email đã đăng ký, MeloBiz sẽ gửi hướng dẫn đặt lại mật khẩu.",
-    submit: "Gửi hướng dẫn",
+    eyebrow: "ĐĂNG NHẬP KHÔNG MẬT KHẨU",
+    title: "Không cần đặt lại mật khẩu",
+    description: "MeloBiz không lưu mật khẩu. Hãy nhập email để nhận mã OTP.",
   },
 } satisfies Record<AuthMode, {
   eyebrow: string;
   title: string;
   description: string;
-  submit: string;
 }>;
 
 export function AuthPanel({ mode }: { mode: AuthMode }) {
-  const [form, setForm] = useState({
-    name: "",
-    businessName: "",
-    email: mode === "login" ? "demo@melobiz.vn" : "",
-    password: mode === "login" ? "Demo@123" : "",
-  });
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const pageContent = content[mode];
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api/v1";
+  const googleUrl = `${apiUrl}/auth/google`;
 
-  function updateField(field: keyof typeof form, value: string) {
-    setForm((current) => ({ ...current, [field]: value }));
-  }
+  useEffect(() => {
+    const oauthError = new URLSearchParams(window.location.search).get(
+      "oauth_error",
+    );
+    if (!oauthError) return;
+    setStatus("error");
+    setMessage(
+      oauthError === "not_configured"
+        ? "Đăng nhập Google chưa được cấu hình trên máy chủ."
+        : "Không thể xác thực với Google. Vui lòng thử lại.",
+    );
+  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
-    setMessage("Đang xử lý...");
-
-    const apiUrl =
-      process.env.NEXT_PUBLIC_API_URL ??
-      (window.location.hostname === "localhost"
-        ? "http://localhost:4000/api/v1"
-        : "");
-
-    if (!apiUrl) {
-      setStatus("error");
-      setMessage("Bản production chưa được kết nối backend.");
-      return;
-    }
-
-    const endpoint =
-      mode === "login"
-        ? "login"
-        : mode === "register"
-          ? "register"
-          : "forgot-password";
-
-    const payload =
-      mode === "login"
-        ? { email: form.email, password: form.password }
-        : mode === "register"
-          ? form
-          : { email: form.email };
+    setMessage(otpSent ? "Đang xác minh mã..." : "Đang gửi mã OTP...");
 
     try {
-      const response = await fetch(`${apiUrl}/auth/${endpoint}`, {
+      const endpoint = otpSent ? "verify-otp" : "request-otp";
+      const response = await fetch(`${apiUrl}/auth/email/${endpoint}`, {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(otpSent ? { email, code } : { email }),
       });
       const result = (await response.json()) as {
         message?: string;
-        data?: { token?: string };
+        data?: { requiresOnboarding?: boolean };
       };
-
       if (!response.ok) {
         setStatus("error");
         setMessage(result.message ?? "Không thể xử lý yêu cầu.");
         return;
       }
 
-      if (result.data?.token) {
-        window.localStorage.setItem("melobiz_token", result.data.token);
-      }
-
       setStatus("success");
       setMessage(result.message ?? "Thao tác thành công.");
-
-      if (mode !== "forgot") {
-        window.setTimeout(() => {
-          window.location.href = "/";
-        }, 900);
+      if (!otpSent) {
+        setOtpSent(true);
+        return;
       }
+      window.location.href = result.data?.requiresOnboarding
+        ? "/hoan-tat-dang-ky?source=email"
+        : "/app";
     } catch {
       setStatus("error");
       setMessage("Không thể kết nối backend. Hãy kiểm tra cổng 4000.");
@@ -137,88 +114,71 @@ export function AuthPanel({ mode }: { mode: AuthMode }) {
           <h1>{pageContent.title}</h1>
           <p>{pageContent.description}</p>
 
-          <form className="auth-form" onSubmit={submit}>
-            {mode === "register" && (
-              <div className="auth-row">
-                <label>
-                  <span>Họ và tên</span>
-                  <input
-                    autoComplete="name"
-                    onChange={(event) => updateField("name", event.target.value)}
-                    placeholder="Nguyễn Minh Anh"
-                    required
-                    value={form.name}
-                  />
-                </label>
-                <label>
-                  <span>Tên doanh nghiệp</span>
-                  <input
-                    onChange={(event) => updateField("businessName", event.target.value)}
-                    placeholder="Cà phê Ban Mai"
-                    required
-                    value={form.businessName}
-                  />
-                </label>
-              </div>
-            )}
+          <a className="google-auth-button" href={googleUrl}>
+            <b>G</b>
+            Tiếp tục với Google
+          </a>
+          <div className="auth-divider"><span>hoặc dùng email</span></div>
 
+          <form className="auth-form" onSubmit={submit}>
             <label>
               <span>Email</span>
               <input
                 autoComplete="email"
-                onChange={(event) => updateField("email", event.target.value)}
+                disabled={otpSent}
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="ban@doanhnghiep.vn"
                 required
                 type="email"
-                value={form.email}
+                value={email}
               />
             </label>
 
-            {mode !== "forgot" && (
+            {otpSent && (
               <label>
-                <span>Mật khẩu</span>
+                <span>Mã OTP 6 chữ số</span>
                 <input
-                  autoComplete={mode === "login" ? "current-password" : "new-password"}
-                  minLength={8}
-                  onChange={(event) => updateField("password", event.target.value)}
-                  placeholder="Tối thiểu 8 ký tự"
+                  autoComplete="one-time-code"
+                  inputMode="numeric"
+                  maxLength={6}
+                  minLength={6}
+                  onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
+                  pattern="\d{6}"
+                  placeholder="000000"
                   required
-                  type="password"
-                  value={form.password}
+                  value={code}
                 />
               </label>
             )}
 
-            {mode === "login" && (
-              <div className="auth-options">
-                <label><input type="checkbox" /> Ghi nhớ đăng nhập</label>
-                <a href="/quen-mat-khau">Quên mật khẩu?</a>
-              </div>
-            )}
-
-            {mode === "register" && (
-              <label className="auth-terms">
-                <input required type="checkbox" />
-                <span>Tôi đồng ý với <a>Điều khoản sử dụng</a> và <a>Chính sách bảo mật</a>.</span>
-              </label>
-            )}
-
             <button className="button auth-submit" disabled={status === "loading"} type="submit">
-              {status === "loading" ? "Đang xử lý..." : pageContent.submit}
+              {status === "loading"
+                ? "Đang xử lý..."
+                : otpSent
+                  ? "Xác minh và đăng nhập"
+                  : "Gửi mã OTP"}
               <span>→</span>
             </button>
 
+            {otpSent && status !== "loading" && (
+              <button
+                className="google-auth-button"
+                onClick={() => {
+                  setOtpSent(false);
+                  setCode("");
+                  setMessage("");
+                  setStatus("idle");
+                }}
+                type="button"
+              >
+                Đổi email
+              </button>
+            )}
             {message && <div className={`auth-message ${status}`}>{message}</div>}
           </form>
 
-          {mode === "login" && (
-            <>
-              <div className="demo-account"><span>TÀI KHOẢN DEMO</span><b>demo@melobiz.vn</b><i>Demo@123</i></div>
-              <p className="auth-switch">Chưa có tài khoản? <a href="/dang-ky">Dùng thử miễn phí</a></p>
-            </>
-          )}
-          {mode === "register" && <p className="auth-switch">Đã có tài khoản? <a href="/dang-nhap">Đăng nhập</a></p>}
-          {mode === "forgot" && <p className="auth-switch">Đã nhớ mật khẩu? <a href="/dang-nhap">Quay lại đăng nhập</a></p>}
+          {mode === "login" && <p className="auth-switch">Chưa có tài khoản? <a href="/dang-ky">Dùng thử miễn phí</a></p>}
+          {mode !== "login" && <p className="auth-switch">Đã có tài khoản? <a href="/dang-nhap">Đăng nhập</a></p>}
         </div>
       </section>
     </main>

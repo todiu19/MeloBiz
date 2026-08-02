@@ -35,7 +35,7 @@ export default async function IndustryDetailPage({
               <span className="page-kicker">MELOBIZ CHO {industry.name.toUpperCase()}</span>
               <h1>{industry.title}</h1>
               <p>{industry.description}</p>
-              <div className="detail-actions"><a className="button" href="/dang-ky">Dùng thử 14 ngày <span>→</span></a><a href="#playlist">Xem playlist ↓</a></div>
+              <div className="detail-actions"><a className="button" href="/app">Dùng miễn phí <span>→</span></a><a href="#playlist">Xem playlist ↓</a></div>
               <ul className="genre-pills">{industry.genres.map((genre) => <li key={genre}>{genre}</li>)}</ul>
             </div>
             <div className="sound-console">
@@ -121,7 +121,7 @@ export default async function IndustryDetailPage({
       <section className="compact-cta">
         <div className="container compact-cta-inner">
           <div><span className="page-kicker">BẮT ĐẦU TRONG VÀI PHÚT</span><h2>Cho {industry.name.toLowerCase()} một chất nhạc riêng.</h2></div>
-          <a className="button button-light" href="/dang-ky">Dùng thử miễn phí <span>→</span></a>
+          <a className="button button-light" href="/app">Dùng thử miễn phí <span>→</span></a>
         </div>
       </section>
 

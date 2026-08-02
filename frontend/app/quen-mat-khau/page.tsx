@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { AuthPanel } from "@/components/auth/AuthPanel";
 
 export const metadata: Metadata = {
-  title: "Quên mật khẩu | MeloBiz",
-  description: "Khôi phục mật khẩu tài khoản MeloBiz.",
+  title: "Đăng nhập không mật khẩu | MeloBiz",
+  description: "Nhận mã OTP qua email để đăng nhập MeloBiz.",
 };
 
 export default function ForgotPasswordPage() {

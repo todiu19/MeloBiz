@@ -23,12 +23,8 @@ npm.cmd run dev
 - Frontend: http://localhost:3001
 - Backend health check: http://localhost:4000/health
 
-## Tài khoản demo
-
-```text
-Email: demo@melobiz.vn
-Mật khẩu: Demo@123
-```
+MeloBiz không lưu mật khẩu. Người dùng đăng nhập bằng Google OAuth hoặc mã OTP
+gửi qua email; OTP chỉ được giữ tạm trong Redis và tự hết hạn.
 
 Các trang tài khoản:
 
@@ -47,9 +43,16 @@ Các trang nội dung chính đều dùng route riêng:
 
 API auth:
 
-- `POST /api/v1/auth/login`
-- `POST /api/v1/auth/register`
-- `POST /api/v1/auth/forgot-password`
+- `POST /api/v1/auth/email/request-otp`
+- `POST /api/v1/auth/email/verify-otp`
+- `GET /api/v1/auth/email/onboarding`
+- `POST /api/v1/auth/email/complete`
+- `GET /api/v1/auth/me`
+- `POST /api/v1/auth/logout`
+- `GET /api/v1/auth/google`
+- `GET /api/v1/auth/google/callback`
+- `GET /api/v1/auth/google/onboarding`
+- `POST /api/v1/auth/google/complete`
 
 ## API loại hình kinh doanh
 

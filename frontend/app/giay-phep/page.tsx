@@ -53,7 +53,7 @@ export default function LicensePage() {
       <section className="compact-cta">
         <div className="container compact-cta-inner">
           <div><span className="page-kicker">CẦN HỒ SƠ CHO DOANH NGHIỆP?</span><h2>Bắt đầu với một điểm phát.</h2></div>
-          <a className="button button-light" href="/dang-ky">Dùng thử 14 ngày <span>→</span></a>
+          <a className="button button-light" href="/app">Dùng miễn phí <span>→</span></a>
         </div>
       </section>
 

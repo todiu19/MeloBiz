@@ -1,6 +1,12 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { getCurrentUser } from "@/services/auth";
+import type { CurrentUser } from "@/types/auth";
+
 export function Logo() {
   return (
-    <a className="logo" href="/" aria-label="MeloBiz">
+    <a className="logo" href="/app" aria-label="MeloBiz">
       <span className="logo-mark"><i /><i /><i /></span>
       <span>Melo<span>Biz</span></span>
     </a>
@@ -8,19 +14,42 @@ export function Logo() {
 }
 
 export function SiteHeader() {
+  const [user, setUser] = useState<CurrentUser | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    void getCurrentUser()
+      .then((currentUser) => {
+        if (active) setUser(currentUser);
+      })
+      .catch(() => {
+        if (active) setUser(null);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <header>
       <div className="container nav">
         <Logo />
         <nav>
-          <a href="/loai-hinh">Loại hình</a>
+          <a href="/">Tổng quan</a>
+          <a href="/loai-hinh">Loại Hình</a>
           <a href="/cach-hoat-dong">Cách hoạt động</a>
           <a href="/bang-gia">Bảng giá</a>
           <a href="/giay-phep">Giấy phép</a>
         </nav>
-        <div className="nav-actions">
-          <a className="login" href="/dang-nhap">Đăng nhập</a>
-          <a className="button button-small" href="/dang-ky">Dùng thử miễn phí <span>↗</span></a>
+        <div className={`nav-actions${user ? " authenticated" : ""}`}>
+          {user ? (
+            <a className="nav-account" href="/tai-khoan">
+              <span aria-hidden="true">{user.name.trim().charAt(0).toUpperCase()}</span>
+              Tài khoản
+            </a>
+          ) : null}
         </div>
       </div>
     </header>

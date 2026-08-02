@@ -189,3 +189,36 @@
 .auth-message {
   border-radius: 12px;
 }
+
+.nav-account {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.nav-account > span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fffaf3;
+  background: #6c4938;
+  font-family: "Lora", Georgia, serif;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .nav-actions.authenticated::after {
+    display: none;
+  }
+
+  .nav-account {
+    font-size: 0;
+  }
+
+  .nav-account > span {
+    font-size: 13px;
+  }
+
+}

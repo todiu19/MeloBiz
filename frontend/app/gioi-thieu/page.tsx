@@ -59,7 +59,7 @@ export default function AboutPage() {
       <section className="compact-cta">
         <div className="container compact-cta-inner">
           <div><span className="page-kicker">CÙNG TẠO MỘT KHÔNG GIAN ĐÁNG NHỚ</span><h2>Bắt đầu bằng bài nhạc đầu tiên.</h2></div>
-          <a className="button button-light" href="/dang-ky">Dùng thử MeloBiz <span>→</span></a>
+          <a className="button button-light" href="/app">Dùng thử MeloBiz <span>→</span></a>
         </div>
       </section>
 

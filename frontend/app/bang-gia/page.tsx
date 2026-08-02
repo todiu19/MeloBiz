@@ -73,7 +73,7 @@ export default function PricingPage() {
             <div className="plan-price"><strong>199.000₫</strong><span>/ tháng<br />/ điểm phát</span></div>
             <p className="plan-vat">Giá chưa bao gồm VAT</p>
             <ul>{includedFeatures.map((feature) => <li key={feature}><i>✓</i>{feature}</li>)}</ul>
-            <a className="button full" href="/dang-ky">Dùng thử 14 ngày <span>→</span></a>
+            <a className="button full" href="/app">Dùng miễn phí <span>→</span></a>
             <small className="plan-footnote">Không cần thẻ tín dụng · Thiết lập trong vài phút</small>
           </article>
 
@@ -129,7 +129,7 @@ export default function PricingPage() {
       <section className="compact-cta">
         <div className="container compact-cta-inner">
           <div><span className="page-kicker">BẬT NHẠC TRONG VÀI PHÚT</span><h2>Dùng thử trước, quyết định sau.</h2></div>
-          <a className="button button-light" href="/dang-ky">Bắt đầu miễn phí <span>→</span></a>
+          <a className="button button-light" href="/app">Bắt đầu miễn phí <span>→</span></a>
         </div>
       </section>
 

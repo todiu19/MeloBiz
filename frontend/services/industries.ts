@@ -61,12 +61,12 @@ function mergeApiIndustry(apiIndustry: ApiIndustry): Industry {
       apiIndustry.description ??
       fallback?.description ??
       apiIndustry.excerpt,
-    mood: apiIndustry.mood,
+    mood: apiIndustry.mood || fallback?.mood || "",
     genres:
       apiIndustry.genres.length > 0
         ? apiIndustry.genres
         : fallback?.genres ?? [],
-    accent: apiIndustry.accent,
+    accent: apiIndustry.accent || fallback?.accent || "#8f7b70",
     playlists:
       apiIndustry.playlists && apiIndustry.playlists.length > 0
         ? apiIndustry.playlists.map((playlist) => ({

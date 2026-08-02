@@ -51,7 +51,7 @@ export default function HowItWorksPage() {
           </div>
           <div>
             <p>Thiết lập một lần, MeloBiz chăm phần còn lại. Nhân viên không cần chọn từng bài và chủ doanh nghiệp vẫn kiểm soát được mọi điểm phát.</p>
-            <a className="button" href="/dang-ky">Tạo không gian đầu tiên <span>→</span></a>
+            <a className="button" href="/app">Tạo không gian đầu tiên <span>→</span></a>
           </div>
         </div>
       </section>
@@ -106,7 +106,7 @@ export default function HowItWorksPage() {
       <section className="compact-cta">
         <div className="container compact-cta-inner">
           <div><span className="page-kicker">SẴN SÀNG TRONG VÀI PHÚT</span><h2>Để không gian tự chạy đúng nhịp.</h2></div>
-          <a className="button button-light" href="/dang-ky">Dùng thử miễn phí <span>→</span></a>
+          <a className="button button-light" href="/app">Dùng thử miễn phí <span>→</span></a>
         </div>
       </section>
 
